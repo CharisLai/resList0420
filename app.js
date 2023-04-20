@@ -23,6 +23,15 @@ app.get('/restaurants/:id', (req, res) => {
     res.render('show', { show: One })
 })
 
+// routes: search
+app.get('/search', (req, res) => {
+    const keyword = req.query.keyword.toLowerCase()
+    const restaurants = dataList.results.filter(data => {
+        return data.name.toLowerCase().includes(keyword) || data.name.toLowerCase().includes(keyword)
+    })
+    res.render('index', { data: restaurants })
+})
+
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
 })
