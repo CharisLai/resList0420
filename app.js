@@ -2,6 +2,8 @@
 const express = require('express')
 const app = express()
 const port = 3000
+// restaurant data
+const dataList = require('./restaurant.json')
 
 const exphbs = require('express-handlebars')
 //express-handlebar
@@ -11,7 +13,7 @@ app.use(express.static('public'))
 
 // routes
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', { data: dataList.results })
 })
 
 app.listen(3000, () => {
