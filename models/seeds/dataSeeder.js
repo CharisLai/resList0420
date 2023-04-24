@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
+
+// loading model and seeder.json
 const data = require('../restaurant')
+const dataList = require('../restaurant.json').results
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
@@ -12,6 +15,10 @@ db.on('error', () => {
 })
 db.once('open', () => {
     console.log('MongoDB Working!')
-
-    console.log('DataSeeder is DONE.')
+    data.create(dataList)
+        .then(() => {
+            console.log('DataSeeder is DONE.')
+            db.close()
+        })
+        .catch(err => console.error)
 })
