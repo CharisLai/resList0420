@@ -29,19 +29,19 @@ app.use(express.static('public'))
 // body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// routes: main page, all data from database
+// router: main page, all data from database
 app.get('/', (req, res) => {
     Restaurant.find()
         .lean()
         .then(data => res.render('index', { data }))
         .catch(error => console.error(error))
 })
-// routes: Create-get
+// router: Create-get
 app.get('/restaurant/new', (req, res) => {
     res.render('new')
 })
 
-// routes: show
+// router: show
 app.get('/restaurant/:id', (req, res) => {
     // console.log(req.params)
     const id = req.params.id
@@ -51,7 +51,7 @@ app.get('/restaurant/:id', (req, res) => {
         .catch(error => console.log(error))
 })
 
-// routes: search
+// router: search
 app.get('/search', (req, res) => {
     const keyword = req.query.keyword.toLowerCase()
     const restaurants = restaurant.results.filter(data => {
@@ -60,7 +60,7 @@ app.get('/search', (req, res) => {
     res.render('index', { data: restaurants })
 })
 
-// routes: Create -POST
+// router: Create -POST
 app.post('/restaurants', (req, res) => {
     const id = req.params.id
     return Restaurant.create({ ...req.body })
@@ -95,7 +95,14 @@ app.post('/restaurants/:id', (req, res) => {
         .then(() => res.redirect(`/restaurant/${id}`))
         .catch(error => console.log(error))
 })
-
+// router: Delete
+app.post('/restaurant/:id/delete', (req, res) => {
+    const id = req.params.id
+    return Restaurant.findById(id)
+        .then(restaurant => restaurant.remove())
+        .then(() => res.redirect('/'))
+        .catch(error => console.log(error))
+})
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
 })
