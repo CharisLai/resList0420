@@ -27,7 +27,7 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 // body-parser
-app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // routes: main page, all data from database
 app.get('/', (req, res) => {
@@ -37,12 +37,13 @@ app.get('/', (req, res) => {
         .catch(error => console.error(error))
 })
 // routes: Create-get
-app.get('/new', (req, res) => {
+app.get('/restaurant/new', (req, res) => {
     res.render('new')
 })
+
 // routes: show
 app.get('/restaurant/:id', (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     const id = req.params.id
     Restaurant.findById(id)
         .lean()
@@ -61,11 +62,38 @@ app.get('/search', (req, res) => {
 
 // routes: Create -POST
 app.post('/restaurants', (req, res) => {
-    const userId = req.user._id
-    return Restaurant.create({ ...req.body, userId })
+    const id = req.params.id
+    return Restaurant.create({ ...req.body })
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
-    // console.log(req.body)
+})
+// router: Edit-GET
+app.get('/restaurant/:id/edit', (req, res) => {
+    const id = req.params.id
+    return Restaurant.findById(id)
+        .lean()
+        .then(modify => res.render('edit', { modify }))
+        .catch(error => console.log(error))
+})
+// router: Edit-POST
+app.post('/restaurants/:id', (req, res) => {
+    const id = req.params.id
+    const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+    return Restaurant.findById(id)
+        .then(modify => {
+            modify.name = name
+            modify.name_en = name_en
+            modify.category = category
+            modify.image = image
+            modify.location = location
+            modify.phone = phone
+            modify.google_map = google_map
+            modify.rating = rating
+            modify.description = description
+            return modify.save()
+        })
+        .then(() => res.redirect(`/restaurant/${id}`))
+        .catch(error => console.log(error))
 })
 
 app.listen(3000, () => {
