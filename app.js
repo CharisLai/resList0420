@@ -3,7 +3,8 @@ const exphbs = require('express-handlebars')
 const mongoose = require("mongoose")
 
 const bodyParser = require('body-parser')
-const restaurant = require('./models/restaurant')
+const Restaurant = require('./models/restaurant')
+// const restaurant = require('./models/restaurant')
 const port = 3000
 
 if (process.env.NODE_ENV !== 'production') {
@@ -26,29 +27,33 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 // body-parser
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
-// routes: index, all data from database
+// routes: main page, all data from database
 app.get('/', (req, res) => {
-    restaurant.find()
+    Restaurant.find()
         .lean()
-        .then(data => res.render('index', { data: data }))
+        .then(data => res.render('index', { data }))
         .catch(error => console.error(error))
 })
 // routes: Create-get
-app.get('/restaurant/new', (req, res) => {
+app.get('/new', (req, res) => {
     res.render('new')
 })
 // routes: show
-app.get('/restaurants/:id', (req, res) => {
-    const One = dataList.results.find(One => One.id.toString() === req.params.id)
-    res.render('show', { show: One })
+app.get('/restaurant/:id', (req, res) => {
+    console.log(req.params)
+    const id = req.params.id
+    Restaurant.findById(id)
+        .lean()
+        .then(show => res.render('detail', { show }))
+        .catch(error => console.log(error))
 })
 
 // routes: search
 app.get('/search', (req, res) => {
     const keyword = req.query.keyword.toLowerCase()
-    const restaurants = dataList.results.filter(data => {
+    const restaurants = restaurant.results.filter(data => {
         return data.name.toLowerCase().includes(keyword) || data.name.toLowerCase().includes(keyword)
     })
     res.render('index', { data: restaurants })
@@ -56,16 +61,13 @@ app.get('/search', (req, res) => {
 
 // routes: Create -POST
 app.post('/restaurants', (req, res) => {
-    restaurant.create(req.body)
+    const userId = req.user._id
+    return Restaurant.create({ ...req.body, userId })
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
-    console.log(req.body)
+    // console.log(req.body)
 })
 
-// routes: Show
-app.get('/', (req, res) => {
-
-})
 app.listen(3000, () => {
     console.log('App is running on http://localhost:3000')
 })
