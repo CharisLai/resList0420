@@ -1,8 +1,10 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 const mongoose = require("mongoose")
 
 const bodyParser = require('body-parser')
+
 const Restaurant = require('./models/restaurant')
 // const restaurant = require('./models/restaurant')
 const port = 3000
@@ -13,7 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const app = express()
 // connect MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
 const db = mongoose.connection
 // mongodb connection status
 db.on('error', () => {
@@ -25,14 +27,18 @@ db.once('open', () => {
 //express-handlebar
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
 app.use(express.static('public'))
 // body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
+// method-Override
+app.use(methodOverride('_method'))
 
 // router: main page, all data from database
 app.get('/', (req, res) => {
     Restaurant.find()
         .lean()
+        .sort({ _id: 'asc' })
         .then(data => res.render('index', { data }))
         .catch(error => console.error(error))
 })
@@ -76,7 +82,7 @@ app.get('/restaurant/:id/edit', (req, res) => {
         .catch(error => console.log(error))
 })
 // router: Edit-POST
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
     const id = req.params.id
     const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
     return Restaurant.findById(id)
@@ -96,7 +102,7 @@ app.post('/restaurants/:id', (req, res) => {
         .catch(error => console.log(error))
 })
 // router: Delete
-app.post('/restaurant/:id/delete', (req, res) => {
+app.delete('/restaurant/:id', (req, res) => {
     const id = req.params.id
     return Restaurant.findById(id)
         .then(restaurant => restaurant.remove())

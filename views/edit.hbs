@@ -1,6 +1,6 @@
 <h1 class="mb-1 restaurant-show-title">編輯餐廳 -{{modify.name}} </h1>
 <div class="container">
-    <form action="/restaurants/{{ modify._id }}" method="POST">
+    <form action="/restaurants/{{ modify._id }}?_method=PUT" method="POST">
         <div class="mb-3">
             <label for="name" class="form-label">店名
                 <span class="text-danger">*</span>
@@ -33,7 +33,9 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">圖片連結<span class="text-danger">*</span></label>
-            <input type="url" class="form-control" id="image" name="image" value="{{modify.image}}" required />
+            <input type="url" class="form-control" id="image" name="image"
+                placeholder="如https://cdn.britannica.com/84/73184-050-05ED59CB/Sunflower-field-Fargo-North-Dakota.jpg，請使用有 .jpg結尾的網址"
+                value="{{modify.image}}" aria-describedby="image" required />
         </div>
         <div class="mb-3">
             <label for="location" class="form-label">地址<span class="text-danger">*</span></label>
