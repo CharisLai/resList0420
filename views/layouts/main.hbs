@@ -12,8 +12,18 @@
 </head>
 
 <body>
-
-    {{{body}}}
+    <header>
+        <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;
+    background-color: #7dd4ecde;">
+            <a class="navbar-brand" style="color:black" href="/">Restaurant List</a>
+            <a class="btn btn-outline-light" href="/todos/new">Create</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container mt-3">
+            {{{body}}}
+        </div>
+    </main>
     <script src="/javascripts/popper.js"></script>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
