@@ -12,7 +12,7 @@ app.set('view engine', 'hbs')
 const routes = require('./routes')
 require('./config/mongoose')
 
-const port = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(express.static('public'))
 // body-parser
@@ -22,6 +22,6 @@ app.use(methodOverride('_method'))
 // routes
 app.use(routes)
 
-app.listen(3000, () => {
-    console.log('App is running on http://localhost:3000')
+app.listen(PORT, () => {
+    console.log(`App is running on http://localhost:${PORT}`)
 })
