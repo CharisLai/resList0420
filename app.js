@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 const bodyParser = require('body-parser')
 
@@ -21,6 +22,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 // routes
 app.use(routes)
+// express-session
+app.use(session({
+    secret: 'What is this?',
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.listen(PORT, () => {
     console.log(`App is running on http://localhost:${PORT}`)
