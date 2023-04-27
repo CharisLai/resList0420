@@ -9,7 +9,8 @@ router.get('/login', (req, res) => {
 })
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/login'
+    failureRedirect: '/users/login',
+    failureMessage: true
 }))
 
 // register 
@@ -18,30 +19,49 @@ router.get('/register', (req, res) => {
 })
 router.post('/register', (req, res) => {
     const { name, email, password, confirmPassword } = req.body
+    const errors = []
+
+    if (!name || !email || !password || !confirmPassword) {
+        errors.push({ message: 'All fields are required！' })
+    }
+    if (password !== confirmPassword) {
+        errors.push({ message: 'Password and confirmation password do not match！' })
+    }
+    if (errors.length) {
+        return res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            confirmPassword
+        })
+    }
+
     User.findOne({ email }).then(user => {
         if (user) {
-            console.log('User already exists.')
-            res.render('register', {
+            errors.push({ message: 'This Email registered' })
+            return res.render('register', {
+                errors,
                 name,
                 email,
                 password,
                 confirmPassword
             })
-        } else {
-            return User.create({
-                name,
-                email,
-                password
-            })
-                .then(() => res.redirect('/'))
-                .catch(error => console.error(error))
         }
+        return User.create({
+            name,
+            email,
+            password
+        })
+            .then(() => res.redirect('/'))
+            .catch(error => console.error(error))
     })
         .catch(error => console.log(error))
 })
 // Logout
 router.get('/logout', (req, res) => {
     req.logout()
+    req.flash('success_msg', 'You have successfully logged out')
     res.redirect('/users/login')
 })
 module.exports = router
