@@ -5,9 +5,10 @@ const Restaurant = require('../../models/restaurant')
 
 // router: main page, all data from database
 router.get('/', (req, res) => {
-    Restaurant.find()
+    const userId = req.user._id
+    Restaurant.find({ userId })
         .lean()
-        .sort({ _id: 'asc' })
+        .sort({ name: 'asc' })
         .then(data => res.render('index', { data }))
         .catch(error => console.error(error))
 })
