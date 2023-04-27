@@ -9,14 +9,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
     <link rel="stylesheet" href="/stylesheets/bootstrap.css">
     <link rel="stylesheet" href="/stylesheets/restaurantListTemplate.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-dark justify-content-between" style="padding: 8px 16px;
     background-color: #7dd4ecde;">
-            <a class="navbar-brand" style="color:black" href="/">Restaurant List</a>
-            <a class="btn btn-outline-light" href="/todos/new">Create</a>
+            <a class="navbar-brand" href="/">
+                <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+                    width="30" height="30" class="d-inline-block align-top" alt="Restaurant List">
+            </a>
+            <a class="navbar-brand" style="color:black" href="/">{{#if isAuthenticated}}{{
+                user.name}}'s{{/if}}Restaurant List</a>
+            {{#if isAuthenticated}}
+            <div class="Logout">
+                <a class="btn btn-outline-light fa fa-sign-out" href="/users/logout" aria-hidden="true"><i
+                        class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</a>
+            </div>
+            {{else}}
+            <div class="Login">
+                <a class="btn btn-outline-light" href="/users/login"><i class="fa fa-sign-in"
+                        aria-hidden="true"></i>&nbsp;Login</a>{{/if}}
+            </div>
         </nav>
     </header>
     <main>

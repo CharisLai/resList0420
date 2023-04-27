@@ -21,9 +21,6 @@ router.post('/register', (req, res) => {
     User.findOne({ email }).then(user => {
         if (user) {
             console.log('User already exists.')
-            function alert() {
-                window.alert("test")
-            }
             res.render('register', {
                 name,
                 email,
@@ -37,7 +34,6 @@ router.post('/register', (req, res) => {
                 password
             })
                 .then(() => res.redirect('/'))
-                .alert('Redirect Done. Welcome to Record List')
                 .catch(error => console.error(error))
         }
     })

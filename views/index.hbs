@@ -1,19 +1,9 @@
+<!-- navigation -->
 <header>
-  <!-- navigation -->
-  <nav class="navbar navbar-light bg-light">
-    <div class="container">
-      <div class="row">
-        <a class="navbar-brand" href="/">
-          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-            width="30" height="30" class="d-inline-block align-top" alt="Restaurant List">
-          Restaurant List
-        </a>
-      </div>
+  <div class="container">
+    <div class="row">
     </div>
-    <div class="row" style="margin-right:10px">
-      <a href="/restaurant/new" class="justify-content-end btn btn-outline-primary ">Create</a>
-    </div>
-  </nav>
+  </div>
   <div class="banner"></div>
 </header>
 
@@ -21,7 +11,7 @@
 <div class="container search-bar ">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <div class="row space-around">
+      <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-8">
           <form action="/search">
             <div class="input-group">
@@ -47,6 +37,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <!-- Create button -->
+  <div class="row justify-content-end" style="margin-right:10px">
+    <a href="/restaurant/new" class="col-xs-6 col-md-4 btn btn-outline-primary">Create</a>
   </div>
 </div>
 
