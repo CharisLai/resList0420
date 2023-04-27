@@ -4,6 +4,9 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 // router
 const routes = require('./routes')
 require('./config/mongoose')
