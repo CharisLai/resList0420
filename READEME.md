@@ -32,7 +32,7 @@
 <h3>Contributing</h3>
 <ol>
     <li>Install <strong> Node.js</strong> and <strong> Npm </strong></li>
-    <li>Clone it: <a href="https://github.com/CharisLai/resList0420.git">This Git</a></li>
+    <li>Clone it: <a href="https://github.com/CharisLai/resList0420.git">Code</a></li>
     <li>To specified folder and key in <b>npm install</b> through terminal</li>
     <li>Set environment variables <b>MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.popacfe.mongodb.net/<Your MongoDB Table>?retryWrites=true&w=majority</b></li>
     <li>Key in <strong> npm run start</strong> run product</li>
