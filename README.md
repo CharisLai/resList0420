@@ -1,5 +1,8 @@
 <h2>Product Name</h2>
 <p>Restaurant List, your gourmet journey your wonderful life. </p>
+<p><li>Test URL: <a href="https://boiling-retreat-02576.herokuapp.com/users/login">Heroku</a></li>
+    <li>Test Email:<strong> user1@example.com</strong> </li> <li>Test Password: <strong>12345678</strong></li><br>
+    Please Use this test Email and Test Password to test. <br>Thank you.
 <img src="https://user-images.githubusercontent.com/103364394/235061179-c7a048ec-6d80-46d9-96d5-29930bed9b31.png" alt="example Screenshot">
 <h3>Content</h3>
 <p>What can you do? Record your favorite Restaurant, and why you love it.<br>
@@ -21,7 +24,7 @@
 
 <h3>Tools</h3>
 <ul>
-    <li>Node.js 14.16.0<br>
+    <li>Node.js 16.17.0<br>
     <li>NPM 8.15.0</li>
     <li>Express 4.16.4<br>
     <li>Express-Handlebars 4.0.2<br>
