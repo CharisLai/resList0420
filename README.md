@@ -1,5 +1,5 @@
 <h2>Product Name</h2>
-<p>Restaurant List, your food record your wonderful life. </p>
+<p>Restaurant List, your gourmet journey your wonderful life. </p>
 <img src="https://user-images.githubusercontent.com/103364394/235061179-c7a048ec-6d80-46d9-96d5-29930bed9b31.png" alt="example Screenshot">
 <h3>Content</h3>
 <p>What can you do? Record your favorite Restaurant, and why you love it.<br>
