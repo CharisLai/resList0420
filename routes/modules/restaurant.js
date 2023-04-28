@@ -7,7 +7,6 @@ const Restaurant = require('../../models/restaurant')
 router.get('/new', (req, res) => {
     res.render('new')
 })
-
 // router: Create -POST
 router.post('/', (req, res) => {
     const userId = req.user._id
@@ -15,7 +14,6 @@ router.post('/', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })
-
 // router: show
 router.get('/:id', (req, res) => {
     const _id = req.params.id
@@ -24,15 +22,6 @@ router.get('/:id', (req, res) => {
         .lean()
         .then(show => res.render('detail', { show }))
         .catch(error => console.log(error))
-})
-
-// router: search
-router.get('/search', (req, res) => {
-    const keyword = req.query.keyword.toLowerCase()
-    const restaurants = restaurant.results.filter(data => {
-        return data.name.toLowerCase().includes(keyword) || data.name.toLowerCase().includes(keyword)
-    })
-    res.render('index', { data: restaurants })
 })
 
 // router: Edit-GET
@@ -74,6 +63,4 @@ router.delete('/:id', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(error => console.log(error))
 })
-
-
 module.exports = router

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Restaurant List</title>
+    <title>Restaurant List</title>
 
     <!-- link CSS files here -->
 
@@ -24,19 +24,19 @@
                 <a class="navbar-brand" href="/">
                     <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
                         width="30" height="30" class="d-inline-block align-top" alt="Restaurant List">
-                    <a class="navbar-brand" style="color:black" href="/">{{#if isAuthenticated}}{{
+                    <a class="navbar-brand" style="color:white" href="/">{{#if isAuthenticated}}{{
                         user.name}}'s{{/if}} Restaurant List</a>
                 </a>
                 <div class="text-right">
                     {{#if isAuthenticated}}
                     <div class="Logout">
-                        <a class="btn btn-outline-light" href="/users/logout"><i class="fa fa-sign-out"
-                                aria-hidden="true"></i>&nbsp;Logout</a>
+                        <a class="btn btn-outline-light" href="/users/logout">Logout&nbsp;&nbsp;<i
+                                class="fa-sharp fa-solid fa-right-from-bracket fa-beat-fade fa-lg"></i></a>
                     </div>
                     {{else}}
                     <div class="Login">
-                        <a class="btn btn-outline-light" href="/users/login"><i class="fa fa-sign-in"
-                                aria-hidden="true"></i>&nbsp;Login</a>{{/if}}
+                        <a class="btn btn-outline-light" href="/users/login">Login&nbsp;&nbsp;<i
+                                class="fa-sharp fa-solid fa-right-to-bracket fa-beat fa-lg"></i></a>{{/if}}
                     </div>
                 </div>
             </div>
@@ -46,6 +46,7 @@
     <!-- partial templates will replace the part of "body" here -->
     {{{body}}}
     <!-- partial templates will replace the part of "body" here -->
+    <script src="https://kit.fontawesome.com/c0f0fe7c80.js" crossorigin="anonymous"></script>
     <script src="/javascripts/popper.js"></script>
     <script src="/javascripts/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
