@@ -1,5 +1,5 @@
 <h2>Product Name</h2>
-<p>Restaurant List, your food record your wonderful life. </p>
+<p>Restaurant List, your gourmet journey your wonderful life. </p>
 <img src="https://user-images.githubusercontent.com/103364394/235061179-c7a048ec-6d80-46d9-96d5-29930bed9b31.png" alt="example Screenshot">
 <h3>Content</h3>
 <p>What can you do? Record your favorite Restaurant, and why you love it.<br>
@@ -33,9 +33,9 @@
 <ol>
     <li>Install <strong> Node.js</strong> and <strong> Npm </strong></li>
     <li>Clone it: <a href="https://github.com/CharisLai/resList0420.git">Code</a></li>
-    <li>To specified folder and key in <b>npm install</b> through terminal</li>
+    <li>To specified folder and input <b>npm install</b> through terminal</li>
     <li>Set environment variables <b>MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.popacfe.mongodb.net/<Your MongoDB Table>?retryWrites=true&w=majority</b></li>
-    <li>Key in <strong> npm run start</strong> run product</li>
+    <li>Input <strong> npm run start</strong> run product</li>
     <li>Open Brown and input address <b> http://localhost:3000</b> </li>
     <li>Stop it, you need use  <b>ctrl + c </b></li>
 </ol>
