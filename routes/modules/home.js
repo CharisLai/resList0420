@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     Restaurant.find({ userId })
         .lean()
         .sort({ name: 'asc' })
-        .then(data => res.render('index', { data }))
+        .then(restaurant => res.render('index', { restaurant }))
         .catch(error => console.error(error))
 })
 
