@@ -8,11 +8,18 @@ const User = require('../../models/user')
 router.get('/login', (req, res) => {
     res.render('login')
 })
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureMessage: true
-}))
+router.post('/login', (req, res, next) => {
+    const { email, password } = req.body
+    if (!email || !password) {
+        req.flash('fail_msg', 'All fields are required！')
+    }
+    next()
+},
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+        failureMessage: true
+    }))
 
 // register 
 router.get('/register', (req, res) => {
